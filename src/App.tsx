@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 
 import { FiPlus, FiMinus, FiX, FiDivide } from 'react-icons/fi';
 
 import { combinate } from './lib/resolver';
 import { calculate } from './lib/combinationsCalculator';
-import { validateNumbers } from './validators/numbers';
 
 import './App.scss';
 
@@ -22,17 +21,26 @@ function App() {
 
   const [hasError, setHasError] = useState(false);
 
-  const combinations = combinate({
-    numbers: [numberInput0, numberInput1, numberInput2, numberInput3],
-    operations: [plusSelected, minusSelected, xSelected, divideSelected],
-    parenthesis: parenthesisSelected,
-  });
+  const combinations = useMemo(() => {
+    try {
+      const comb = combinate({
+        numbers: [numberInput0, numberInput1, numberInput2, numberInput3],
+        operations: [plusSelected, minusSelected, xSelected, divideSelected],
+        parenthesis: parenthesisSelected,
+      });
 
-  const combinationsEqualTo10 = calculate(combinations, 10);
+      setHasError(false);
+      return calculate(comb, 10);
+    } catch (err) {
+      setHasError(true);
+    }
 
-  useEffect(() => {
-    setHasError(!validateNumbers([numberInput0, numberInput1, numberInput2, numberInput3]));
-  }, [numberInput0, numberInput1, numberInput2, numberInput3])
+    return [];
+  }, [
+    numberInput0, numberInput1, numberInput2, numberInput3,
+    plusSelected, minusSelected, xSelected, divideSelected,
+    parenthesisSelected
+  ]);
 
   return (
     <div className='container'>
@@ -127,13 +135,13 @@ function App() {
           </button>
         </div>
 
-        <span>{combinationsEqualTo10.length}</span>
+        <span>{combinations.length}</span>
       </section>
 
       <section className='combinations'>
         <h2>COMBINATIONS</h2>
         <ul>
-          {combinationsEqualTo10.map((combination) => 
+          {combinations.map((combination) => 
             <li key={combination.join('')}>
               {combination.map((text, index) => {
                 switch (text) {

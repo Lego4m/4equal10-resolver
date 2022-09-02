@@ -21,7 +21,7 @@ type combinationsObject = {
 function combinate(data: combinateParams): string[][][] {
   const isValid = validateNumbers(data.numbers);
 
-  if (!isValid) return [];
+  if (!isValid) throw new Error('Numbers Invalid.');
 
   const { numbers, operations, parenthesis } = getCombinations({
     numbers: data.numbers,
