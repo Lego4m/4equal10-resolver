@@ -46,7 +46,13 @@ function getCombinations({
     return operations[index];
   }
 
-  const numbersCombinations = createCombinations(numbers, 4);
+  const numbersCombinations = createCombinations(numbers, 4)
+    .map((sequence) => JSON.stringify(sequence)) // remove duplicates
+    .reduce<string[]>((a, b) => {
+      if (a.indexOf(b) < 0) a.push(b);
+      return a;
+    }, [])
+    .map((sequence) => JSON.parse(sequence) as string[]); 
 
   const operationsCombinations = createCombinations(
     operations
@@ -76,12 +82,12 @@ function getCombinations({
 
       return true;
     })
-    .map((sequence) => JSON.stringify(sequence))
+    .map((sequence) => JSON.stringify(sequence)) // remove duplicates
     .reduce<string[]>((a, b) => {
       if (a.indexOf(b) < 0) a.push(b);
       return a;
     }, [])
-    .map((sequence) => JSON.parse(sequence) as string[]); // remove duplicates
+    .map((sequence) => JSON.parse(sequence) as string[]); 
 
   return {
     numbers: numbersCombinations,
