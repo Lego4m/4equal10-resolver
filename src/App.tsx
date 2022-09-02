@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import { FiPlus, FiMinus, FiX, FiDivide } from 'react-icons/fi';
 
+import { combinate } from './lib/resolver';
+
 import './App.scss';
 
 function App() {
@@ -17,6 +19,12 @@ function App() {
   const [divideSelected, setDivideSelected] = useState(true);
 
   const [hasError, setHasError] = useState(false);
+
+  const combinations = combinate({
+    numbers: [numberInput0, numberInput1, numberInput2, numberInput3],
+    operations: [plusSelected, minusSelected, xSelected, divideSelected],
+    parenthesis: parenthesisSelected,
+  });
 
   return (
     <div className='container'>
