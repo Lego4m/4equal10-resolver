@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { FiPlus, FiMinus, FiX, FiDivide } from 'react-icons/fi';
 
 import { combinate } from './lib/resolver';
+import { calculate } from './lib/combinationsCalculator';
 
 import './App.scss';
 
@@ -25,6 +26,8 @@ function App() {
     operations: [plusSelected, minusSelected, xSelected, divideSelected],
     parenthesis: parenthesisSelected,
   });
+
+  const combinationsEqualTo10 = calculate(combinations, 10);
 
   return (
     <div className='container'>
@@ -110,18 +113,13 @@ function App() {
           </button>
         </div>
 
-        <span>36.864</span>
+        <span>{combinationsEqualTo10.length}</span>
       </section>
 
       <section className='combinations'>
         <h2>COMBINATIONS</h2>
         <ul>
-          <li>6 + 2 + 1 + 2</li>
-          <li>6 + 2 + 1 + 2</li>
-          <li>6 + 2 + 1 + 2</li>
-          <li>6 + 2 + 1 + 2</li>
-          <li>6 + 2 + 1 + 2</li>
-          <li>6 + 2 + 1 + 2</li>
+          {combinationsEqualTo10.map((combination) => <li>{combination}</li>)}
         </ul>
       </section>
     </div>
