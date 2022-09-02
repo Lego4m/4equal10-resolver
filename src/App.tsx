@@ -37,7 +37,16 @@ function App() {
   return (
     <div className='container'>
       <header>
-        <h1>4=10 Resolver</h1>
+        <h1>
+          <a 
+            href='https://play.google.com/store/apps/details?id=app.fourequalsten.fourequalsten_app' 
+            target="_blank" 
+            rel="noreferrer"
+          >
+            4=10
+          </a> 
+          {' '} Resolver
+        </h1>
       </header>
 
       <section className='configs'>
@@ -125,7 +134,7 @@ function App() {
         <h2>COMBINATIONS</h2>
         <ul>
           {combinationsEqualTo10.map((combination) => 
-            <li key={combination.join('')}>{combination}</li>
+            <li key={combination.join('')}>{combination.join(' ')}</li>
           )}
         </ul>
       </section>
