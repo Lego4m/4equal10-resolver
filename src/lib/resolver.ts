@@ -1,3 +1,5 @@
+import { validateNumbers } from '../validators/numbers';
+
 interface combinateParams {
   numbers: string[],
   operations: boolean[],
@@ -16,7 +18,11 @@ type combinationsObject = {
   parenthesis: string[][],
 }
 
-function combinate(data: combinateParams) {
+function combinate(data: combinateParams): string[][][] {
+  const isValid = validateNumbers(data.numbers);
+
+  if (!isValid) return [];
+
   const { numbers, operations, parenthesis } = getCombinations({
     numbers: data.numbers,
     operations: data.operations,

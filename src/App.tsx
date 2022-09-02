@@ -1,17 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { FiPlus, FiMinus, FiX, FiDivide } from 'react-icons/fi';
 
 import { combinate } from './lib/resolver';
 import { calculate } from './lib/combinationsCalculator';
+import { validateNumbers } from './validators/numbers';
 
 import './App.scss';
 
 function App() {
-  const [numberInput0, setNumberInput0] = useState('');
-  const [numberInput1, setNumberInput1] = useState('');
-  const [numberInput2, setNumberInput2] = useState('');
-  const [numberInput3, setNumberInput3] = useState('');
+  const [numberInput0, setNumberInput0] = useState('0');
+  const [numberInput1, setNumberInput1] = useState('0');
+  const [numberInput2, setNumberInput2] = useState('0');
+  const [numberInput3, setNumberInput3] = useState('0');
 
   const [parenthesisSelected, setParenthesisSelected] = useState(true);
   const [plusSelected, setPlusSelected] = useState(true);
@@ -28,6 +29,10 @@ function App() {
   });
 
   const combinationsEqualTo10 = calculate(combinations, 10);
+
+  useEffect(() => {
+    setHasError(!validateNumbers([numberInput0, numberInput1, numberInput2, numberInput3]));
+  }, [numberInput0, numberInput1, numberInput2, numberInput3])
 
   return (
     <div className='container'>
@@ -119,7 +124,9 @@ function App() {
       <section className='combinations'>
         <h2>COMBINATIONS</h2>
         <ul>
-          {combinationsEqualTo10.map((combination) => <li>{combination}</li>)}
+          {combinationsEqualTo10.map((combination) => 
+            <li key={combination.join('')}>{combination}</li>
+          )}
         </ul>
       </section>
     </div>
