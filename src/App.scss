@@ -111,9 +111,16 @@ section.combinations {
     }
 
     li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.10rem;
+
       padding: 0.25rem;
       border: 2px solid #7159c1;
       border-radius: 0.5rem;
+
+      font-size: 1rem;
       text-align: center;
     }
   }

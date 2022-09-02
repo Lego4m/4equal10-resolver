@@ -134,7 +134,17 @@ function App() {
         <h2>COMBINATIONS</h2>
         <ul>
           {combinationsEqualTo10.map((combination) => 
-            <li key={combination.join('')}>{combination.join(' ')}</li>
+            <li key={combination.join('')}>
+              {combination.map((text, index) => {
+                switch (text) {
+                  case '+': return <FiPlus key={index} />
+                  case '-': return <FiMinus key={index} />
+                  case '*': return <FiX key={index} />
+                  case '/': return <FiDivide key={index} />
+                  default: return <span key={index}>{text}</span>;
+                }
+              })}
+            </li>
           )}
         </ul>
       </section>
