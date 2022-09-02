@@ -81,7 +81,7 @@ function getCombinations({
       if (a.indexOf(b) < 0) a.push(b);
       return a;
     }, [])
-    .map((sequence) => JSON.parse(sequence));
+    .map((sequence) => JSON.parse(sequence) as string[]); // remove duplicates
 
   return {
     numbers: numbersCombinations,

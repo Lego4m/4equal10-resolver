@@ -1,16 +1,24 @@
 function calculate(combinations: string[][][], shouldReturnNumber: number) {
   const numbersEqualToShouldReturn: string[][] = []
 
-  combinations.forEach((number) => {
-    number.forEach((numberCombinationSequence) => {
-      const sequenceString = numberCombinationSequence.join('');
+  combinations
+    .map((sequence) => JSON.stringify(sequence))
+    .reduce<string[]>((a, b) => {
+      if (a.indexOf(b) < 0) a.push(b);
+      return a;
+    }, [])
+    .map((sequence) => JSON.parse(sequence) as string[][]) // remove duplicates
 
-      const solution = eval(sequenceString);
+    .forEach((number) => {
+      number.forEach((numberCombinationSequence) => {
+        const sequenceString = numberCombinationSequence.join('');
 
-      if (solution === shouldReturnNumber) {
-        numbersEqualToShouldReturn.push(numberCombinationSequence);
-      }
-    });
+        const solution = eval(sequenceString);
+
+        if (solution === shouldReturnNumber) {
+          numbersEqualToShouldReturn.push(numberCombinationSequence);
+        }
+      });
   });
 
   return numbersEqualToShouldReturn;
