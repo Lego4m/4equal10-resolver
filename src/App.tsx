@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 
 import { FiPlus, FiMinus, FiX, FiDivide } from 'react-icons/fi';
 
-import { combinate } from './lib/resolver';
+import { combinate } from './lib/solver';
 import { calculate } from './lib/combinationsCalculator';
 
 import './App.scss';
@@ -53,7 +53,7 @@ function App() {
           >
             4=10
           </a> 
-          {' '} Resolver
+          {' '} Solver
         </h1>
       </header>
 
