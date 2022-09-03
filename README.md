@@ -26,4 +26,4 @@ Yes. I'm giving the answers away (even though in the game has the possibility of
 
 ## Ok, ok. Where can i access the solver?
 
-The solver can be accessed [here](https://lego4m.github.io/4=10-solver).
+The solver can be accessed [here](https://lego4m.github.io/4equal10-solver).
