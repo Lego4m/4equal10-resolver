@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/4equal10-solver/static/css/main.930eb0e3.css",
+    "main.js": "/4equal10-solver/static/js/main.912a358e.js",
+    "index.html": "/4equal10-solver/index.html",
+    "main.930eb0e3.css.map": "/4equal10-solver/static/css/main.930eb0e3.css.map",
+    "main.912a358e.js.map": "/4equal10-solver/static/js/main.912a358e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.930eb0e3.css",
+    "static/js/main.912a358e.js"
+  ]
+}
